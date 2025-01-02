@@ -1,5 +1,6 @@
 import type { CertificateOptions } from "mkcert"
 import { createCert } from "mkcert"
+import { allowCors } from "../../src/utils/cors"
 
 export const GET = () => {
   return Response.json({
@@ -8,7 +9,7 @@ export const GET = () => {
   })
 }
 
-export const POST = async (req, res) => {
+const PostHandler = async (req, res) => {
   const {ca, domains, validity = 365, organization, email}: CertificateOptions = await req.json()
 
   if (!ca || !domains) {
@@ -35,3 +36,5 @@ export const POST = async (req, res) => {
     }
   })
 }
+
+export const POST = allowCors(PostHandler)
