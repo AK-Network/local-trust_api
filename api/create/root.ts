@@ -30,7 +30,12 @@ export const POST = async (req, _) => {
       locality,
       validity
     })
-    return Response.json({ certificate })
+    return Response.json({ certificate }, {
+      headers: {
+        'Access-Control-Allow-Headers': '*',
+        'Access-Control-Allow-Origin': '*'
+      }
+    })
   } catch (error: unknown) {
     console.error(error)
     return Response.json({

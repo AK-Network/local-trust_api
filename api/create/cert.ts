@@ -28,5 +28,10 @@ export const POST = async (req, res) => {
     organization,
     email
   })
-  return Response.json({ certificate })
+  return Response.json({ certificate }, {
+    headers: {
+      'Access-Control-Allow-Headers': '*',
+      'Access-Control-Allow-Origin': '*'
+    }
+  })
 }
