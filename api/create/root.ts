@@ -1,6 +1,11 @@
 import type { CertificateAuthorityOptions } from 'mkcert'
 import { createCA } from 'mkcert'
 
+
+export const OPTIONS = () => {
+  return new Response(null, { status: 200 })
+}
+
 export const POST = async (req, ctx) => {
 
   const { organization, countryCode, state, locality, validity = 365 }: CertificateAuthorityOptions = await req.json()
