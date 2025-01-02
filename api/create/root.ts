@@ -2,18 +2,18 @@ import type { CertificateAuthorityOptions } from 'mkcert'
 import { createCA } from 'mkcert'
 import { allowCors } from '../../src/utils/cors'
 
-export const GET = (req, res) => {
+// export const GET = (req, ctx) => {
 
-  console.log(req.url)
-  console.log(res)
+//   console.log(req.url)
+//   console.log(ctx)
 
-  return Response.json({
-    message: 'This is a GET request',
-    description: 'Please send a POST request to create a certificate authority'
-  })
-}
+//   return Response.json({
+//     message: 'This is a GET request',
+//     description: 'Please send a POST request to create a certificate authority'
+//   })
+// }
 
-const PostHndler = async (req, _) => {
+const PostHndler = async (req, res) => {
 
   const { organization, countryCode, state, locality, validity = 365 }: CertificateAuthorityOptions = await req.json()
 
@@ -35,12 +35,7 @@ const PostHndler = async (req, _) => {
       locality,
       validity
     })
-    return Response.json({ certificate }, {
-      headers: {
-        'Access-Control-Allow-Headers': '*',
-        'Access-Control-Allow-Origin': '*'
-      }
-    })
+    return res.json({ certificate })
   } catch (error: unknown) {
     console.error(error)
     return Response.json({
@@ -52,4 +47,7 @@ const PostHndler = async (req, _) => {
   }
 }
 
-export const POST = allowCors(PostHndler)
+// export const POST = allowCors(PostHndler)
+
+
+export default allowCors(PostHndler)
