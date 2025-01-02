@@ -2,8 +2,12 @@ import type { CertificateOptions } from "mkcert"
 import { createCert } from "mkcert"
 
 
+export const OPTIONS = () => {
+  return new Response(null, { status: 200 })
+}
+
 export const POST = async (req, res) => {
-  const {ca, domains, validity = 365, organization, email}: CertificateOptions = await req.json()
+  const {ca, domains, validity = 365}: CertificateOptions = await req.json()
 
   if (!ca || !domains) {
     return Response.json({
@@ -17,9 +21,7 @@ export const POST = async (req, res) => {
   const certificate = await createCert({
     ca,
     domains,
-    validity,
-    organization,
-    email
+    validity
   })
   return Response.json({ certificate })
 }
