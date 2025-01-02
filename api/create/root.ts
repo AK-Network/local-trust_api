@@ -13,7 +13,7 @@ import { allowCors } from '../../src/utils/cors'
 //   })
 // }
 
-const PostHndler = async (req, res) => {
+export const POST = async (req, ctx) => {
 
   const { organization, countryCode, state, locality, validity = 365 }: CertificateAuthorityOptions = await req.json()
 
@@ -35,7 +35,7 @@ const PostHndler = async (req, res) => {
       locality,
       validity
     })
-    return res.json({ certificate })
+    return Response.json({ certificate })
   } catch (error: unknown) {
     console.error(error)
     return Response.json({
@@ -46,8 +46,3 @@ const PostHndler = async (req, res) => {
     })
   }
 }
-
-// export const POST = allowCors(PostHndler)
-
-
-export default allowCors(PostHndler)

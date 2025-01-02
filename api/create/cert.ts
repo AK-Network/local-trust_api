@@ -29,12 +29,7 @@ const PostHandler = async (req, res) => {
     organization,
     email
   })
-  return Response.json({ certificate }, {
-    headers: {
-      'Access-Control-Allow-Headers': '*',
-      'Access-Control-Allow-Origin': '*'
-    }
-  })
+  return res.json({ certificate })
 }
 
-export const POST = allowCors(PostHandler)
+export const POST = PostHandler
