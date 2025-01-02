@@ -1,0 +1,11 @@
+{
+  "name": "@ak-network/local-trust_api",
+  "version": "0.0.1",
+  "description": "",
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "mkcert": "^3.2.0"
+  }
+}
