@@ -1,17 +1,5 @@
 import type { CertificateAuthorityOptions } from 'mkcert'
 import { createCA } from 'mkcert'
-import { allowCors } from '../../src/utils/cors'
-
-// export const GET = (req, ctx) => {
-
-//   console.log(req.url)
-//   console.log(ctx)
-
-//   return Response.json({
-//     message: 'This is a GET request',
-//     description: 'Please send a POST request to create a certificate authority'
-//   })
-// }
 
 export const POST = async (req, ctx) => {
 
